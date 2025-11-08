@@ -9,7 +9,7 @@ directory = os.path.join(os.getcwd(), 'cf_solves/')
 if not os.path.exists(directory):
     os.makedirs(directory)
 
-print("Sure!! Let's go! You got 20 minutes...\n")
+print("Sure!! Let's go! Let's try for 20 minutes...\n")
 
 lang = input("Input language extension: eg: 'cpp', 'py' etc.\n")
 
@@ -32,7 +32,7 @@ os.system(f"timeout -t 1200")
 
 while True:
     try:
-        x = input("'r'+'enter' to run code, \n'g' for git push, \nand 'q'+'enter' to quit...\n")
+        x = input("\t-'r'+'enter' to run code \n\t-'g' for git push \n\t-and 'q'+'enter' to quit\n")
         if x == 'r':
             print('input here:\n')
             os.system(f"python {path}")
