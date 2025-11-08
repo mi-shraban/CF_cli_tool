@@ -11,15 +11,17 @@ if not os.path.exists(directory):
 
 print("Sure!! Let's go! You got 20 minutes...\n")
 
-lang = input('Input language extension: eg: .cpp, .py etc.\n')
+lang = input("Input language extension: eg: 'cpp', 'py' etc.\n")
 
 if lang == 'py':
-    path = os.path.join(directory, f"{args.id}.py")
+    file = args.id + '.py'
+    path = os.path.join(directory, f"{file}")
     if not os.path.isfile(path):
         with open('py_template.txt', 'r') as template, open(path, 'w') as cf_file:
             cf_file.write(template.read())
 elif lang == 'cpp':
-    path = os.path.join(directory, f"{args.id}.cpp")
+    file = args.id + '.cpp'
+    path = os.path.join(directory, f"{file}")
     if not os.path.isfile(path):
         with open('cpp_template.txt', 'r') as template, open(path, 'w') as cf_file:
             cf_file.write(template.read())
@@ -30,11 +32,19 @@ os.system(f"timeout -t 1200")
 
 while True:
     try:
-        x = input("'r'+'enter' to run code, 'q'+'enter' to quit...\n")
+        x = input("'r'+'enter' to run code, \n'g' for git push, \nand 'q'+'enter' to quit...\n")
         if x == 'r':
             print('input here:\n')
             os.system(f"python {path}")
             print("\ncool...'r'+'enter' to run again.\n")
+        elif x == 'g':
+            print(f"Pushing {file} to Github")
+            os.chdir("cf_solves")
+            os.system(f"git add {file}")
+            os.system(f'git commit -m "solved {args.id}"')
+            os.system(f"git push origin main")
+            os.chdir("..")
+            break
         elif x == 'q':
             print("quitting...\n")
             break
