@@ -1,34 +1,28 @@
 import os.path
-import argparse
 
-parser = argparse.ArgumentParser()
-parser.add_argument('-i', '--id', dest='id', required=True, type=str, help='problemID. eg: 2167B')
-args = parser.parse_args()
+probId = input('Problem ID: (eg. 2160B): ')
+lang = input("Enter language extension: (eg: 'cpp'/'py'): ")
 
 directory = os.path.join(os.getcwd(), 'cf_solves/')
 if not os.path.exists(directory):
     os.makedirs(directory)
 
-print("Sure!! Let's go! Let's try for 20 minutes...\n")
-
-lang = input("Input language extension: eg: 'cpp', 'py' etc.\n")
-
 if lang == 'py':
-    file = args.id + '.py'
+    file = probId + '.py'
     path = os.path.join(directory, f"{file}")
     if not os.path.isfile(path):
         with open('py_template.txt', 'r') as template, open(path, 'w') as cf_file:
             cf_file.write(template.read())
 elif lang == 'cpp':
-    file = args.id + '.cpp'
+    file = probId + '.cpp'
     path = os.path.join(directory, f"{file}")
     if not os.path.isfile(path):
         with open('cpp_template.txt', 'r') as template, open(path, 'w') as cf_file:
             cf_file.write(template.read())
 
-
 os.system(f"code {path}")
 os.system(f"timeout -t 1200")
+print("Sure!! Let's go! Let's try for 20 minutes...\n")
 
 if lang == 'py':
     print("\t-'r'+'enter' to run code \n\t-'g' for git push \n\t-and 'q'+'enter' to quit\n")
@@ -56,7 +50,7 @@ while True:
             print(f"Pushing {file} to Github")
             os.chdir("cf_solves")
             os.system(f"git add {file}")
-            os.system(f'git commit -m "solved {args.id}"')
+            os.system(f'git commit -m "solved {probId}"')
             os.system(f"git push origin main")
             os.chdir("..")
             break
