@@ -30,12 +30,27 @@ elif lang == 'cpp':
 os.system(f"code {path}")
 os.system(f"timeout -t 1200")
 
+if lang == 'py':
+    print("\t-'r'+'enter' to run code \n\t-'g' for git push \n\t-and 'q'+'enter' to quit\n")
+elif lang == 'cpp':
+    print("\t-'c'+'enter' to compile code \n\t-'r'+'enter' to run code \n\t-'g' for git push \n\t-and 'q'+'enter' to quit\n")
+
 while True:
     try:
-        x = input("\t-'r'+'enter' to run code \n\t-'g' for git push \n\t-and 'q'+'enter' to quit\n")
+        x = input()
+        if x == 'c':
+            if lang == 'cpp':
+                os.system(f'g++ -std=c++14 {path}')
+                print('Compiled Successfully')
+            elif lang == 'py':
+                print('Compilation not needed.')
         if x == 'r':
             print('input here:\n')
-            os.system(f"python {path}")
+            if lang == 'cpp':
+                os.system('a')
+                print()
+            elif lang == 'py':
+                os.system(f"python {path}")
             print("\ncool...'r'+'enter' to run again.\n")
         elif x == 'g':
             print(f"Pushing {file} to Github")
