@@ -45,12 +45,17 @@ while True:
                 print()
             elif lang == 'py':
                 os.system(f"python {path}")
-            print("\ncool...'r'+'enter' to run again.\n")
+            print("\ncool...'r'+'enter' to run again.\nHowever, if solved, 'g' + enter to push to github.\n")
         elif x == 'g':
-            print(f"Pushing {file} to Github")
+            print(f"Adding {file} to Git")
             os.chdir("cf_solves")
             os.system(f"git add {file}")
             os.system(f'git commit -m "solved {probId}"')
+
+            print("Pulling latest changes...")
+            os.system("git pull --rebase")
+
+            print("Pushing to GitHub...")
             os.system(f"git push origin main")
             os.chdir("..")
             break
