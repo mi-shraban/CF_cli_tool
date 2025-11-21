@@ -53,7 +53,7 @@ while True:
             os.system(f'git commit -m "solved {probId}"')
 
             print("Pulling latest changes...")
-            os.system("git pull --rebase")
+            os.system("git pull --rebase --autostash")
 
             print("Pushing to GitHub...")
             os.system(f"git push origin main")
